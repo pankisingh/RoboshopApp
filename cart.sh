@@ -1,3 +1,5 @@
-#!/bin/bash
+#!/usr/bin/bash
 
-echo -e "\e[COLOR-32mHello world]"
+No_Of_Users = $(who | wc -l)
+
+echo $No_Of_Users
