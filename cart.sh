@@ -1,5 +1,4 @@
 #!/usr/bin/bash
 
-No_Of_Users=$(who | wc -l)
-
-echo $No_Of_Users
+read 'Enter your name ' name
+echo "My name is $name"
