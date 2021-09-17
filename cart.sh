@@ -9,3 +9,7 @@ var3=$((var1+var2));
 echo "This is my total $var3"
 No_of_users=$(who |wc -l)
 echo No of users = $No_of_users
+echo $0
+echo $1
+echo $*
+echo $@
