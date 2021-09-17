@@ -1,5 +1,5 @@
 help:     		## Show this help.
-	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/://' -e 's/##//'
 frontend: 		## Installing Frontend Component
 	@bash frontend.sh
 catalogue: 		## Installing Catalogue Component
@@ -20,5 +20,6 @@ rabbitmq: 		## Installing Rabbitmq Component
 	@bash rabbitmq.sh
 mongodb: 		## Installing Mongodb Component
 	@bash mongodb.sh
-database: mongodb redis mysql rabbitmq   ## Install All Database
+database:		## Install All Database
+database: mongodb redis mysql rabbitmq   
 	
