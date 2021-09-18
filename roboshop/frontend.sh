@@ -14,7 +14,7 @@ else
 fi
 
 }
-echo -n -e "installing Nginx\t\t\t... "
+echo -n -e "installing Nginx\t\t... "
 yum install nginx -y &>>$LOG
 STAT_CHECK $?
 
