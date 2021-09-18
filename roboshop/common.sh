@@ -7,7 +7,6 @@ if [ $USER_ID -ne 0 ]; then
 fi
 
 LOG=/tmp/roboshop.log
-
 #if previously any log is there it will delte and genrate new, 
 #in case you want the history you can move it and store.
 rm -f $LOG
