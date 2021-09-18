@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER_ID=$(id -u)
-if [ $? -ne 0 ]; then
+if [ $USER_ID -ne 0 ]; then
     echo -n -e "\e[31mYou shoud be root or sudo user to run the script\e[0m"
     eixt 2
 fi
