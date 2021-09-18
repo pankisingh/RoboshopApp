@@ -3,9 +3,9 @@ LOG=/tmp/roboshop.log
 
 #if previously any log is there it will delte and genrate new, in case you want the history you can move it and store.
 rm -f $LOG
-echo -n -e "installing Nginx\t\t\t... "
-yum install nginx -y &>>$LOG
-if [ $? -eq 0 ]; 
+
+STAT_CHECK(){
+    if [ $1 -eq 0 ]; 
 then 
     echo -e "\e[32mDone\e[m"
 else
@@ -13,8 +13,15 @@ else
     exit 1
 fi
 
+}
+echo -n -e "installing Nginx\t\t\t... "
+yum install nginx -y &>>$LOG
+STAT_CHECK $?
+
 echo -e "Enabling Nginx\t\t\t... "
 systemctl enable nginx &>>$LOG 
+STAT_CHECK $?
 
 echo -e "Starting Nginx\t\t\t... "
 systemctl start nginx &>>$LOG
+STAT_CHECK $?
