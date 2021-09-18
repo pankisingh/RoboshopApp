@@ -7,14 +7,14 @@ echo -n -e "installing Nginx\t\t\t..."
 yum install nginx -y &>>$LOG
 if [ $? -eq 0 ]; 
 then 
-    echo -e "\e[32mDone\e[m"
+    echo -e "\t\e[32mDone\e[m"
 else
-    echo -e "\e[31mFail\e[m"
+    echo -e "\t\e[31mFail\e[m"
     exit 1
 fi
 
-echo "Enabling Nginx\t\t\t..."
+echo -e "Enabling Nginx\t\t\t..."
 systemctl enable nginx &>>$LOG 
 
-echo "Starting Nginx\t\t\t..."
+echo -e "Starting Nginx\t\t\t..."
 systemctl start nginx &>>$LOG
