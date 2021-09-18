@@ -13,7 +13,7 @@ PRINT "Remove old HtDocs\t"
 cd /usr/share/nginx/html && rm -rf * &>>$LOG
 STAT_CHECK $?
 
-PRINT "Extract Frontend Archive\t"
+PRINT "Extract Frontend Archive"
 unzip /tmp/frontend.zip &>>$LOG
 STAT_CHECK $?
 
