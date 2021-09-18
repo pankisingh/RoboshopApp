@@ -17,11 +17,13 @@ then
     echo -e "\e[32mDone\e[m"
 else
     echo -e "\e[31mFail\e[m"
+    echo -e "\e[33mCheck the log file for more details - $LOG\e[0m"
     exit 1
 fi
 }
 
 PRINT()
 {
+    echo -e "###################\t$1\t#################\t" &>>$LOG
     echo -n -e "$1\t\t... "
 }
