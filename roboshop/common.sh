@@ -32,14 +32,51 @@ NodeJs(){
     PRINT "Installing NodeJs\t"
     yum install nodejs make gcc-c++ -y &>>$LOG
     STAT_CHECK $?
+    
+    ADD_APP_USER
+    
+    Download_APP_Code
 
-    PRINT "Add Demon User\t"
+    
+    PRINT "Installing Node Mangaer\t"
+    cd /home/roboshop/${COMPONENT} &>>$LOG && npm install --unsafe-perm &>>$LOG
+    STAT_CHECK $?
+
+    Application_Permission
+
+    SETUP_SYSTEMD
+
+    START_SERVICE
+}
+START_SERVICE(){
+    PRINT "Start ${COMPONENT} Service\t"
+    systemctl daemon-reload &>>$LOG && systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
+    STAT_CHECK $?
+}
+
+ADD_APP_USER(){
+PRINT "Add Application User\t"
     id=roboshop &>>$LOG
     if [$? -ne 0 ]; then
         useradd roboshop &>>$LOG
     fi
     STAT_CHECK $?
 
+}
+
+SETUP_SYSTEMD(){
+    PRINT "Update SystemD file\t"
+    sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/'  -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/'  -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service && mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+    STAT_CHECK $?
+}
+
+Application_Permission(){
+    PRINT "Fix Application Permission"
+    chown roboshop:roboshop /home/roboshop -R &>>$LOG
+    STAT_CHECK $?
+}
+
+Download_APP_Code(){
     PRINT "Download ${COMPONENT} Archive"
     curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>$LOG
     STAT_CHECK $?
@@ -47,22 +84,22 @@ NodeJs(){
     PRINT "Extract ${COMPONENT}\t"
     cd /home/roboshop && unzip /tmp/${COMPONENT}.zip &>>$LOG && rm -rf ${COMPONENT} && mv ${COMPONENT}-main ${COMPONENT} &>>$LOG
     STAT_CHECK $?
+}
 
-    PRINT "Installing Node Mangaer\t"
-    cd /home/roboshop/${COMPONENT} &>>$LOG && npm install --unsafe-perm &>>$LOG
+JAVA(){
+    PRINT "Install Maven"
+    yum install maven -y &>>$LOG
     STAT_CHECK $?
 
-    PRINT "Fix Application Permission"
-    chown roboshop:roboshop /home/roboshop -R &>>$LOG
+    ADD_APP_USER 
+
+    Download_APP_Code
+
+    PRINT "Compile Code"
+      cd /home/roboshop/${COMPONENT} && mvn clean package &>>$LOG && mv target/shipping-1.0.jar shipping.jar 
     STAT_CHECK $?
 
-    PRINT "Update SystemD file\t"
-    sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/'  -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' /home/roboshop/${COMPONENT}/systemd.service && mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
-    STAT_CHECK $?
-
-
-    PRINT "Start ${COMPONENT} Service\t"
-    systemctl daemon-reload &>>$LOG && systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
-    STAT_CHECK $?
-
+    Application_Permission
+    SETUP_SYSTEMD
+    START_SERVICE
 }
