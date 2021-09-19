@@ -63,4 +63,9 @@ output "bool" {
 
 
 
+variable "Fruits" {
+}
 
+output "Fruits" {
+    value = var.Fruits
+}
