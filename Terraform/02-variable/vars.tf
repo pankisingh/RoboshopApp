@@ -45,7 +45,7 @@ variable "map" {
 }
 
 output "map" {
-    value = "My details - ${var.map["Role"]}"
+    value = "My details -" var.map["Role"]
 }
 output "string" {
     value = var.string
