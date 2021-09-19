@@ -6,7 +6,7 @@ variable "sample2"{}
 
 
 output "sample2" {
-    value = var.Sample2
+    value = var.sample2
 }
 
 
