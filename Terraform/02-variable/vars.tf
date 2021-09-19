@@ -78,9 +78,9 @@ output "country" {
 }
 
 
-variable "season" {
+variable "SEASON" {
 }
 
-output "season" {
-    value = var.season
+output "SEASON" {
+    value = var.SEASON
 }
