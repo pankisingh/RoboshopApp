@@ -2,12 +2,12 @@ variable "Sample"{
     default = "Hello World"
 }
 
-variable "sample2"{}
+# variable "sample2"{}
 
 
-output "sample2" {
-    value = var.sample2
-}
+# output "sample2" {
+#     value = var.sample2
+# }
 
 
 output "sample" {
@@ -29,7 +29,24 @@ variable "boolean"{
     default = true
 }
 
+variable "list" {
+    default =["devops", true , 10]
+}
 
+output "list" {
+    value = var.list[0]
+}
+
+variable "map" {
+    default = {
+        Role="devops Engineer"
+        Age= 43
+    }
+}
+
+output "map" {
+    value = "My details - ${var.map["Role"]}"
+}
 output "string" {
     value = var.string
 }
