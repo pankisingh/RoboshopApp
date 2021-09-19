@@ -67,5 +67,5 @@ variable "Fruits" {
 }
 
 output "Fruits" {
-    value = var.Fruits
+    value = "My Fav Fruits are - {var.Fruits[0]}, {var.Fruits[1]}"
 }
