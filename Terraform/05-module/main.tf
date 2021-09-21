@@ -9,5 +9,5 @@ module "ec2" {
 }
 
 provider "aws" {
-    region = "us_east_1
+    region = "us_east_1"
 }
