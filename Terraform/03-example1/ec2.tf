@@ -12,8 +12,7 @@ resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "allow_ssh"
 
-  ingress = 
-    {
+  ingress {
       description      = "ssh"
       from_port        = 22
       to_port          = 22
@@ -21,9 +20,7 @@ resource "aws_security_group" "allow_ssh" {
       cidr_blocks      = ["0.0.0.0/0"]
     }
   
-
-  egress = 
-    {
+  egress {
       from_port        = 0
       to_port          = 0
       protocol         = -1
