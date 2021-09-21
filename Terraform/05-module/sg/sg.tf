@@ -27,3 +27,12 @@ resource "aws_security_group" "allow_ssh" {
 output "SG_ID" {
     value = aws_security_group.allow_ssh.id
 }
+
+output "IP" {
+    value = var.private_ip
+}
+
+
+variable "private_ip"{
+
+}

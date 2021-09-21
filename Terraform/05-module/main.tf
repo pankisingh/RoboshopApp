@@ -1,6 +1,6 @@
 module "sg" {
     source = "./sg"
-    
+    private_ip = module.ec2.private_ip
 }
 
 module "ec2" {
