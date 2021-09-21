@@ -1,10 +1,11 @@
-resource "aws_instance" "web" {
-    ami                        = "ami-074df373d6bafa625"
-    instance_type              = "t2.micro"
-    vpc_security_group_ids     =  [aws_security_group.allow_ssh.id]
-    tags                       = {
-                    Name       = "Sample"   
-                } 
+resource "aws_instance" "sample" {
+  ami                   = "ami-074df373d6bafa625"
+  instance_type         = "t3.micro"
+  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+
+  tags                  = {
+    Name                = "Sample"
+  }
 }
 
 resource "aws_security_group" "allow_ssh" {
@@ -24,8 +25,8 @@ resource "aws_security_group" "allow_ssh" {
   egress = [
     {
       from_port        = 0
-      to_port          = 65535
-      protocol         = "tcp"
+      to_port          = 0
+      protocol         = -1
       cidr_blocks      = ["0.0.0.0/0"]
     }
   ]
@@ -40,5 +41,8 @@ output "sg-attributes" {
 }
 
 output "ec2-instance" {
-    value = aws_instance.web
+    value = aws_instance.sample
+}
+provider "aws" {
+  region = "us-east-1"
 }
