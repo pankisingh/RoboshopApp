@@ -1,7 +1,7 @@
 
-resource "aws_security_group" "allow_ssh" {
-  name        = "allow_ssh"
-  description = "allow_ssh"
+resource "aws_security_group" "allowssh" {
+  name        = "allowssh"
+  description = "allowssh"
 
   ingress {
       description      = "ssh"
@@ -20,7 +20,7 @@ resource "aws_security_group" "allow_ssh" {
   
 
   tags = {
-    Name = "allow_ssh"
+    Name = "allowssh"
   }
 }
 
