@@ -55,13 +55,12 @@ records     = [element(aws_spot_instance_request.cheap_worker.*.private_id, coun
 
 resource "null_resource" "run-shell-scripting" {
   count         = local.Length
-  provisioner "remote-exec" {
-  connection {
-    host        = element(aws_spot_instance_request.cheap_worker.*.public_id, count.index)
-    user        = "centos"
-    password    =   DevOps321
-
-  }
+ provisioner "remote-exec" {
+    connection {
+      host                  = element(aws_spot_instance_request.cheap_worker.*.public_ip, count.index)
+      user                  = "centos"
+      password              = "DevOps321"
+    }
     inline =[
     "cd/home/centos",
     "git clone https://github.com/pankisingh/RoboshopApp",
