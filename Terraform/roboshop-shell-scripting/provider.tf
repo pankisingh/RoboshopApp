@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 terraform {
-  backednd "s3"{
+  backend "s3"{
 
   bucket = "terraform-backup-057"
   key    = "roboshop/shell-scripting/terraform-tfstate"
