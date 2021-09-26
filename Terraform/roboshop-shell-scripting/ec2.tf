@@ -50,7 +50,7 @@ name        = element(var.COMPONENTS, count.index)
 type        = "A"
 zone_id     = "Z01980721OZZ7K55MWU3"
 ttl         = 300
-records     = [element(aws_spot_instance_request.cheap_worker.*.private_id, count.index)]
+records    = [element(aws_spot_instance_request.cheap_worker.*.private_ip, count.index)]
 }
 
 resource "null_resource" "run-shell-scripting" {
