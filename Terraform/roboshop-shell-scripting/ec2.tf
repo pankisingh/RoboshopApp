@@ -39,7 +39,7 @@ resource "aws_security_group" "allow_ssh" {
 
 resource "aws_ec2_tag" "name_tag" {
   count                 = local.Length
-  resource_id           = element(aws_spot_instance_request.cheap_worker.*.spot_instance_id)
+  resource_id           = element(aws_spot_instance_request.cheap_worker.*.spot_instance_id, count.index)
   key                   = "Name"
   value                  = element(var.COMPONENTS, count.index)
 }
