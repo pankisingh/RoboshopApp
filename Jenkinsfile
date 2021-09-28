@@ -6,12 +6,12 @@ pipeline{
                 sh 'cd Terraform; cd roboshop-shell-scripting; terraform init -reconfigure'
             }
         }
-         stage("Terraform apply"){
+         stage("Terraform destroy"){
             steps{
                 sh '''
                     cd Terraform
                     cd roboshop-shell-scripting
-                    terraform apply -auto-approve
+                    terraform destroy -auto-approve
                 '''
             }
         }
