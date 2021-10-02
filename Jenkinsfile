@@ -2,7 +2,7 @@ pipeline{
     // agent{
     //    node{label 'workstation'}
     // }
-    agent none
+    agent any
     stages{
         stage("one"){
             agent{
@@ -24,7 +24,7 @@ pipeline{
        
     }
     post{
-        agent any
+        //agent any
         always{
             echo "===========Post running=========="
         }
