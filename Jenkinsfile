@@ -21,11 +21,7 @@ pipeline{
                 echo "========executing Two========"
             }
         }
-        post{
-            always{
-                echo "I am running"
-            }
-        }
+       
     }
           
 }
