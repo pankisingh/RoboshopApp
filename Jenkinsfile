@@ -1,20 +1,13 @@
 pipeline{
-   agent any
+    agent{
+       node{label 'workstation'}
+    }
     stages{
-        stage("Terraform Init"){
+        stage("one"){
             steps{
-                sh 'cd Terraform; cd roboshop-shell-scripting; terraform init -reconfigure'
-            }
-        }
-         stage("Terraform destroy"){
-            steps{
-                sh '''
-                    cd Terraform
-                    cd roboshop-shell-scripting
-                    terraform destroy -auto-approve
-                '''
+                echo "========executing one========"
             }
         }
     }
-           
+          
 }
