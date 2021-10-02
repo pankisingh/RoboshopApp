@@ -1,33 +1,49 @@
+// pipeline{
+//     // agent{
+//     //    node{label 'workstation'}
+//     // }
+//     agent any
+//     stages{
+//         stage("one"){
+//             agent{
+//                 label 'java'
+//             }
+
+//             steps{
+//                 echo "========executing one========"
+//             }
+//         }
+//         stage("Two"){
+//             agent{
+//                 label 'master'
+//             }
+//             steps{
+//                 echo "========executing Two========"
+//             }
+//         }
+       
+//     }
+//     post{
+//         //agent any
+//         always{
+//             echo "===========Post running=========="
+//         }
+//     }
+          
+// }
+
 pipeline{
-    // agent{
-    //    node{label 'workstation'}
-    // }
     agent any
+    environment{
+        Demo_Url = "google.com"
+    }
     stages{
         stage("one"){
-            agent{
-                label 'java'
-            }
-
             steps{
-                echo "========executing one========"
+                sh '{$Demo_Url}'
             }
-        }
-        stage("Two"){
-            agent{
-                label 'master'
-            }
-            steps{
-                echo "========executing Two========"
-            }
-        }
-       
-    }
-    post{
-        //agent any
-        always{
-            echo "===========Post running=========="
+            
         }
     }
-          
+    
 }
