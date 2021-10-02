@@ -23,5 +23,11 @@ pipeline{
         }
        
     }
+    post{
+        agent any
+        always{
+            echo "===========Post running=========="
+        }
+    }
           
 }
