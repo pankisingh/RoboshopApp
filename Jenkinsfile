@@ -40,7 +40,7 @@ pipeline{
     stages{
         stage("one"){
             steps{
-                sh '{$Demo_Url}'
+                sh 'echo {$Demo_Url}'
             }
             
         }
