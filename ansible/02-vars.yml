@@ -12,5 +12,12 @@
       vars:
         URL: taks.google.com
 
-
-
+- name: Demo on variables
+  hosts: all
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Print file variable
+      ansible.builtin.debug:
+        msg: "URL= {{URL}}"
+  
