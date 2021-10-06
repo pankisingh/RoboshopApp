@@ -1,7 +1,7 @@
-- name: Demo on variables
-  host: all
-  URL: google.com
-  tasks:
-  - name: Print variable
-    debug:
-      msg: "URL= {{URL}}"
+ - name: Demo on variables
+   host: all
+   URL: google.com
+   tasks:
+     - name: Print variable
+       debug:
+         msg: "URL= {{URL}}"
