@@ -3,5 +3,5 @@ resource "random_pet" "my-list" {
 }
 
 output "myName" {
-    value = my-list.*.prefix[0]
+    value = random_pet.my-list.prefix
 }
