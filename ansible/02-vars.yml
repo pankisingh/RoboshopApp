@@ -47,5 +47,5 @@
 
     - name: Print output
       ansibe.builtin.debug: 
-        msg: {{out}}
+        msg: {{out.stdout}}
        
