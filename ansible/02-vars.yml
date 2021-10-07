@@ -23,6 +23,7 @@
 
 - name: Demo on paly3
   hosts: all
+  gather_fact: no
   tasks:
     - name: Print variable
       ansible.builtin.debug:
