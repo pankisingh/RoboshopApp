@@ -5,3 +5,7 @@ resource "random_pet" "my-list" {
 output "my-Name" {
     value = random_pet.my-list.prefix
 }
+
+output "name"{
+ value = var.prefix[0]
+}
