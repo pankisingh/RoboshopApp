@@ -30,3 +30,10 @@
       vars:
         URL: task.google.com
 
+- name: Demo on paly4
+  hosts: all
+  tasks:
+    - name: Print variable
+      ansible.builtin.debug:
+        msg: "Hostname= {{ansible_fqdn}}"
+      
