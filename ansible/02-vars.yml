@@ -37,4 +37,10 @@
     - name: Print variable
       ansible.builtin.debug:
         msg: "Hostname= {{ansible_fqdn}}"
-      
+
+- name: Demo on paly5
+  hosts: all
+  tasks:
+    - name: Print variable command
+      ansible.builtin.shell: uptime
+      register: out
