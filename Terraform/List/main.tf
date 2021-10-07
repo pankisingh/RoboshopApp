@@ -1,5 +1,5 @@
 resource "random_pet" "my-list" {
- prefix  = var.prefix[0]
+ prefix  = var.prefix
 }
 
 output "myName" {
