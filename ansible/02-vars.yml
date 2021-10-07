@@ -20,4 +20,4 @@
     - name: Print file variable
       ansible.builtin.debug:
         msg: "URL= {{URL}}"
-  
+
