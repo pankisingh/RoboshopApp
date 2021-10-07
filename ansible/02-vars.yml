@@ -44,3 +44,8 @@
     - name: Print variable command
       ansible.builtin.shell: uptime
       register: out
+
+    - name: Print output
+      ansibe.builtin.debug: 
+        msg: {{out}}
+       
